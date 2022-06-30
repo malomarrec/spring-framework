@@ -1,6 +1,7 @@
 description = "Spring Aspects"
 
 apply plugin: "io.freefair.aspectj"
+apply plugin: "org.openrewrite.rewrite"
 
 sourceSets.main.aspectj.srcDir "src/main/java"
 sourceSets.main.java.srcDirs = files()
@@ -41,4 +42,8 @@ dependencies {
 eclipse.project {
 	natures += "org.eclipse.ajdt.ui.ajnature"
 	buildCommands = [new org.gradle.plugins.ide.eclipse.model.BuildCommand("org.eclipse.ajdt.core.ajbuilder")]
+}
+
+rewrite {
+    activeRecipe("org.openrewrite.java.format.AutoFormat")
 }
